@@ -11,11 +11,11 @@
 #include "pch.h"
 extern void scriptMain();
 
-namespace esrc {//------------------ namespace: esrc -------------------------//
+namespace esrc { //------------------ namespace: esrc -------------------------//
 
-void call_scriptMain(){
+void call_scriptMain()
+{
     scriptMain();
 }
 
-}//---------------------- namespace: esrc -------------------------//
-
+} //---------------------- namespace: esrc -------------------------//

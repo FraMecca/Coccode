@@ -5,28 +5,27 @@
  *                                        MODIFY --
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "esrc_player.h"
 #include "esrc_state.h"
+#include "pch.h"
 
-namespace esrc {//------------------ namespace: esrc -------------------------//
+namespace esrc { //------------------ namespace: esrc -------------------------//
 
-namespace player_inn {//-------- namespace: player_inn --------------//
- 
+namespace player_inn { //-------- namespace: player_inn --------------//
+
     std::unique_ptr<Player> playerUPtr;
 
-}//------------- namespace: player_inn end --------------//
+} //------------- namespace: player_inn end --------------//
 
-
-void init_player(){
+void init_player()
+{
     player_inn::playerUPtr = std::make_unique<Player>();
     esrc::insertState("player");
 }
 
-
-Player &get_player(){
+Player& get_player()
+{
     return *(player_inn::playerUPtr);
 }
 
-}//---------------------- namespace: esrc -------------------------//
-
+} //---------------------- namespace: esrc -------------------------//

@@ -5,24 +5,24 @@
  *                                        MODIFY --
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "esrc_camera.h"
 #include "esrc_state.h"
+#include "pch.h"
 
-namespace esrc {//------------------ namespace: esrc -------------------------//
-namespace camera_inn {//------------------ namespace: camera_inn -------------------------//
-    std::unique_ptr<Camera> cameraUPtr; // tmp only-one 
-}//--------------------- namespace: camera_inn end -------------------------//
+namespace esrc { //------------------ namespace: esrc -------------------------//
+namespace camera_inn { //------------------ namespace: camera_inn -------------------------//
+    std::unique_ptr<Camera> cameraUPtr; // tmp only-one
+} //--------------------- namespace: camera_inn end -------------------------//
 
-void init_camera(){
+void init_camera()
+{
     camera_inn::cameraUPtr = std::make_unique<Camera>();
     esrc::insertState("camera");
 }
 
-Camera &get_camera(){
+Camera& get_camera()
+{
     return *(camera_inn::cameraUPtr);
 }
 
-
-}//---------------------- namespace: esrc -------------------------//
-
+} //---------------------- namespace: esrc -------------------------//

@@ -5,10 +5,8 @@
  *                                        MODIFY -- 
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "BoolBitMap.h"
+#include "pch.h"
 
 //===== static =====//
-size_t BoolBitMap::BITS_PER_BYTE {8};
-
-
+size_t BoolBitMap::BITS_PER_BYTE{ 8 };

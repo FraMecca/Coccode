@@ -5,9 +5,8 @@
  *                                        MODIFY --
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "esrc_state.h"
-
+#include "pch.h"
 
 /* exist strs: -----
 colorTableSet
@@ -42,24 +41,22 @@ json_uiGo
 json_windowConfig
 */
 
+namespace esrc { //------------------ namespace: esrc -------------------------//
+namespace state_inn { //-------- namespace: state_inn  --------------//
 
-namespace esrc {//------------------ namespace: esrc -------------------------//
-namespace state_inn {//-------- namespace: state_inn  --------------//
+    std::unordered_set<std::string> ents{};
 
-    std::unordered_set<std::string> ents {};
+} //------------- namespace: state_inn end --------------//
 
-}//------------- namespace: state_inn end --------------//
-
-void insertState( const std::string &str_ ){
-    auto [insertIt, insertBool] = state_inn::ents.insert( str_ );
-    tprAssert( insertBool );
+void insertState(const std::string& str_)
+{
+    auto [insertIt, insertBool] = state_inn::ents.insert(str_);
+    tprAssert(insertBool);
 }
 
-bool is_setState( const std::string &str_ ){
-    return ( state_inn::ents.find(str_) != state_inn::ents.end() );
+bool is_setState(const std::string& str_)
+{
+    return (state_inn::ents.find(str_) != state_inn::ents.end());
 }
 
-
-}//---------------------- namespace: esrc -------------------------//
-
-
+} //---------------------- namespace: esrc -------------------------//

@@ -5,9 +5,8 @@
  *                                        MODIFY -- 
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "AnimActionPos.h"
+#include "pch.h"
 
 //============== static ===============//
-ID_Manager  AnimActionPos::id_manager { ID_TYPE::U32, 1};
-
+ID_Manager AnimActionPos::id_manager{ ID_TYPE::U32, 1 };

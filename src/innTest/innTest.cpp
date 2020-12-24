@@ -5,16 +5,16 @@
  *                                        MODIFY -- 
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "innTest.h"
+#include "pch.h"
 
 //------------------- Libs --------------------//
 #include "magic_enum.hpp"
 
 //------------------- Engine --------------------//
-#include "History.h"
 #include "DirAxes.h"
 #include "DyBinary.h"
+#include "History.h"
 
 #include "random.h"
 #include "simplexNoise.h"
@@ -23,28 +23,19 @@
 
 #include "RGBA.h"
 
+namespace innTest { //---------- namespace: innTest --------------//
 
-namespace innTest {//---------- namespace: innTest --------------//
-
-
-
-
-
-void innTest_main(){
+void innTest_main()
+{
 
     return;
-    tprDebug::console( "\n~~~~~~~~~~ innTest:start ~~~~~~~~~~\n" );
+    tprDebug::console("\n~~~~~~~~~~ innTest:start ~~~~~~~~~~\n");
 
+    RGBA color{ 11, 22, 33, 44 };
 
-    RGBA color { 11, 22, 33, 44 };
+    tprDebug::console(color.to_string());
 
-    tprDebug::console( color.to_string() );
-
-
-
-    tprDebug::console( "\n\n~~~~~~~~~~ innTest:end ~~~~~~~~~~" );
+    tprDebug::console("\n\n~~~~~~~~~~ innTest:end ~~~~~~~~~~");
 }
 
-
-
-}//-------------------- namespace: innTest end --------------//
+} //-------------------- namespace: innTest end --------------//

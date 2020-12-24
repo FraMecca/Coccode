@@ -5,27 +5,28 @@
  *                                        MODIFY --
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "esrc_window.h"
+#include "pch.h"
 
-namespace esrc {//------------------ namespace: esrc -------------------------//
+namespace esrc { //------------------ namespace: esrc -------------------------//
 
-
-namespace window_inn {//-------- namespace: window_inn --------------//
+namespace window_inn { //-------- namespace: window_inn --------------//
 
     //-- 一个 类实例 维护一个 window。
     //-- window 数据结构的 具体内容由 glfw库管理。
     //-- 用户只需保存一个指针。用来访问这个 window。
-    GLFWwindow  *windowPtr {};
+    GLFWwindow* windowPtr{};
 
-}//------------- namespace: window_inn end --------------//
+} //------------- namespace: window_inn end --------------//
 
-GLFWwindow *get_windowPtr(){
+GLFWwindow* get_windowPtr()
+{
     return window_inn::windowPtr;
 }
 
-void set_windowPtr( GLFWwindow *newPtr_ ){
+void set_windowPtr(GLFWwindow* newPtr_)
+{
     window_inn::windowPtr = newPtr_;
 }
 
-}//---------------------- namespace: esrc -------------------------//
+} //---------------------- namespace: esrc -------------------------//

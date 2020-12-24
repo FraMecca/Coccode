@@ -16,15 +16,13 @@
 #include "pch.h"
 
 //-------------------- Engine --------------------//
-#include "MapTexture.h" 
-#include "esrc_behaviour.h" 
+#include "MapTexture.h"
+#include "esrc_behaviour.h"
 
 //-------------------- Script --------------------//
 #include "Script/json/json_all.h"
 
-
 using namespace std::placeholders;
-
 
 //----------- 需要注册到 engine 的函数 ---------------//
 extern void onGoSpeciesIds_SignUp();
@@ -36,21 +34,12 @@ extern void onStart_test();
  * -- script Enter Point
  * -- 常见功能： 将一些 脚本层函数 注册到 引擎中。
  */
-void scriptMain(){
-
+void scriptMain()
+{
     //------- Awakes -------//
 
-    esrc::get_behaviour().signUp_Awakes( std::bind( &onGoSpeciesIds_SignUp ) );
+    esrc::get_behaviour().signUp_Awakes(std::bind(&onGoSpeciesIds_SignUp));
 
     //------- Starts -------//
-    esrc::get_behaviour().signUp_Starts( std::bind( &onStart_test ) );
-
-    
-
-
-
+    esrc::get_behaviour().signUp_Starts(std::bind(&onStart_test));
 }
-
-
-
-

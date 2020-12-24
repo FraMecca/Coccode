@@ -5,10 +5,9 @@
  *                                        MODIFY -- 
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "colorTableId.h"
-
+#include "pch.h"
 
 //const colorTableId_t NilColorTableId { std::hash<std::string>{}("DEFAULT") };
-const colorTableId_t NilColorTableId { static_cast<colorTableId_t>(-1) };
-        //-- never reach
+const colorTableId_t NilColorTableId{ static_cast<colorTableId_t>(-1) };
+//-- never reach

@@ -9,17 +9,17 @@
  */
 //=== *** glad FIRST, glfw SECEND *** ===
 // Don't include glfw3.h ALONE!!!
-#include<glad/glad.h>  
-#include<GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 #include "pch.h"
 
 //-------------------- Engine --------------------//
-#include "input.h" 
-#include "global.h"
-#include "gl_funcs.h" 
 #include "ViewingBox.h"
-#include "esrc_window.h" 
+#include "esrc_window.h"
+#include "gl_funcs.h"
+#include "global.h"
+#include "input.h"
 
 //------------------- 提供给全局的 函数 ----------------
 void glfw_init();
@@ -36,41 +36,42 @@ void glad_set();
  * -----------------------------------------------------------
  * -- glfw 库 的初始化。
  */
-void glfw_init(){
+void glfw_init()
+{
     int ret = glfwInit();
-    tprAssert( ret != GL_FALSE );
+    tprAssert(ret != GL_FALSE);
 }
-
 
 /* ===========================================================
  *                     glfw_hints_set
  * -----------------------------------------------------------
  */
-void glfw_hints_set(){
+void glfw_hints_set()
+{
 
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 3 );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-	glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    #ifdef __APPLE__
-	    glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE ); //-- OSX 必须
-                                //-- FORWARD_COMPAT: 向前兼容／向旧版本兼容
-    #endif
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //-- OSX 必须
+        //-- FORWARD_COMPAT: 向前兼容／向旧版本兼容
+#endif
 }
-
 
 /* ===========================================================
  *                  glfw_window_creat   
  * -----------------------------------------------------------
  */
-void glfw_window_creat(){
+void glfw_window_creat()
+{
 
-    tprAssert( ViewingBox::isFullScreen == false ); //-- 全屏模式 未完工
-    if( ViewingBox::isFullScreen == true){
+    tprAssert(ViewingBox::isFullScreen == false); //-- 全屏模式 未完工
+    if (ViewingBox::isFullScreen == true) {
         //------ 全屏模式 ------//
-        // 未完工... 禁止使用 
-            tprAssert(0);
+        // 未完工... 禁止使用
+        tprAssert(0);
         GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
@@ -79,43 +80,42 @@ void glfw_window_creat(){
         glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
         glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
 
-        esrc::set_windowPtr( glfwCreateWindow( ViewingBox::windowSZ.x,
-                                            ViewingBox::windowSZ.y,
-                                            "tprpix", 
-                                            monitor, 
-                                            nullptr ) );
+        esrc::set_windowPtr(glfwCreateWindow(ViewingBox::windowSZ.x,
+            ViewingBox::windowSZ.y,
+            "tprpix",
+            monitor,
+            nullptr));
 
-    }else{
+    } else {
         //------ 窗口模式 ------//
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE); //- 阻止玩家在程序运行后，修改 window 尺寸
 
-        esrc::set_windowPtr( glfwCreateWindow( ViewingBox::windowSZ.x,
-                                            ViewingBox::windowSZ.y,
-                                            "tprpix", 
-                                            nullptr,  //-- moniter，若为 NULL ，表示 创建 “窗口模式”。
-                                            nullptr ) );
+        esrc::set_windowPtr(glfwCreateWindow(ViewingBox::windowSZ.x,
+            ViewingBox::windowSZ.y,
+            "tprpix",
+            nullptr, //-- moniter，若为 NULL ，表示 创建 “窗口模式”。
+            nullptr));
     }
 
-	if(esrc::get_windowPtr() == nullptr){
-		glfwTerminate();
+    if (esrc::get_windowPtr() == nullptr) {
+        glfwTerminate();
         tprAssert(0);
-	}
+    }
     //-- 将这个 唯一的 window 设为 current context
-	glfwMakeContextCurrent( esrc::get_windowPtr() );
-
+    glfwMakeContextCurrent(esrc::get_windowPtr());
 }
-
 
 /* ===========================================================
  *                  glfw_oth_set
  * -----------------------------------------------------------
  * -- glfw 一些杂乱选项的 设置
  */
-void glfw_oth_set(){
-    
+void glfw_oth_set()
+{
+
     // 当本 window in forcus 后,鼠标不受任何影响
     // 就像操作一款常规软件，鼠标可显示在 窗口上方， 方便操作 窗口中的 ui图标
-    glfwSetInputMode( esrc::get_windowPtr(), GLFW_CURSOR, GLFW_CURSOR_NORMAL );
+    glfwSetInputMode(esrc::get_windowPtr(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     //--- vsync --
     // 强制开启，在普通显示屏上，fps会被锁到 60
@@ -123,51 +123,49 @@ void glfw_oth_set(){
     // 但是好像会 失效 ...
 
     // 每次交换缓冲区之前等待的帧数：1
-    glfwSwapInterval( 1 );
+    glfwSwapInterval(1);
 }
-
 
 /* ===========================================================
  *                  glfw_callback_set
  * -----------------------------------------------------------
  * -- glfw 回调函数 设置区
  */
-void glfw_callback_set(){
+void glfw_callback_set()
+{
     // nothing ...
 }
-
 
 /* ===========================================================
  *                     glad_init  
  * -----------------------------------------------------------
  */
-void glad_init(){
+void glad_init()
+{
 
-    if( !gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) ){
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         tprAssert(0);
     }
 
-    tprDebug::console( 
+    tprDebug::console(
         "OpenGL: {0}. {1}",
-        GLVersion.major, GLVersion.minor
-    );
+        GLVersion.major, GLVersion.minor);
 
-
-            // mac 4.1
-            // win 0.0 -- 估计是有问题
+    // mac 4.1
+    // win 0.0 -- 估计是有问题
 }
- 
 
 /* ===========================================================
  *                     glad_set
  * -----------------------------------------------------------
  */
-void glad_set(){
-    
+void glad_set()
+{
+
     //-------------------------//
     //          深度测试
     //-------------------------//
-    glEnable(GL_DEPTH_TEST); 
+    glEnable(GL_DEPTH_TEST);
 
     //-------------------------//
     //          混合
@@ -186,8 +184,8 @@ void glad_set(){
     //
     //   确保，先渲染所有的 实心图元，后渲染 半透明图元
     //
-    glEnable( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     //-------------------------//
     //        模版检测
@@ -203,8 +201,4 @@ void glad_set(){
 	    // 禁止向 模版缓冲 写入数据
         // -- 在这种设置下，模版检测几乎什么都不做
     */
-
 }
-
-
-

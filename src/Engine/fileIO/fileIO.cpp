@@ -5,15 +5,15 @@
  *                                        修改 -- 
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "fileIO.h"
+#include "pch.h"
 
 //--------------- Libs ------------------//
 #include "SysConfig.h" // MUST BEFORE TPR_OS_WIN32_ !!!
-#if defined TPR_OS_WIN32_ 
-    #include "tprFileSys_win.h"
-#elif defined TPR_OS_UNIX_ 
-    #include "tprFileSys_unix.h"
+#if defined TPR_OS_WIN32_
+#include "tprFileSys_win.h"
+#elif defined TPR_OS_UNIX_
+#include "tprFileSys_unix.h"
 #endif
 
 /* ===========================================================
@@ -21,15 +21,15 @@
  * -----------------------------------------------------------
  * cross platform
  */
-std::unique_ptr<std::string> read_a_file( const std::string &filePath_ ){
+std::unique_ptr<std::string> read_a_file(const std::string& filePath_)
+{
 
     auto bufUPtr = std::make_unique<std::string>();
     //-- read files --
 #if defined TPR_OS_WIN32_
-    tprWin::file_load( filePath_, *bufUPtr );
+    tprWin::file_load(filePath_, *bufUPtr);
 #elif defined TPR_OS_UNIX_
-    tprUnix::file_load( filePath_, *bufUPtr );
+    tprUnix::file_load(filePath_, *bufUPtr);
 #endif
     return bufUPtr;
 }
-

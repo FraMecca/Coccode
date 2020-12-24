@@ -5,7 +5,7 @@
  *                                        MODIFY --
  * ----------------------------------------------------------
  */
-#include "pch.h"
 #include "DyParam.h"
+#include "pch.h"
 
-DyParam emptyDyParam {};
+DyParam emptyDyParam{};
